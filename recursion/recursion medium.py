@@ -35,7 +35,7 @@ def permutations(nums):
     return ans
 
 
-# print(permutations([1,2,3,4]))
+print(permutations([1,2,3,4]))
 
 
 def permuteUnique(nums):

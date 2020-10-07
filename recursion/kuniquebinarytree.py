@@ -1,11 +1,14 @@
 # Definition for a binary tree node.
 class TreeNode:
-    def __init__(self, value,right=None,left=None):
+    def __init__(self, value=None,right=None,left=None):
         self.key = value
-        self.right = None
-        self.left = None
+        self.right = right
+        self.left = left
 
     def insert(self, key):
+        if self.key is None:
+            self.key=key
+            return
         if self.key == key:
             return
         elif self.key < key:
@@ -70,66 +73,27 @@ class TreeNode:
         return lines, n + m + u, max(p, q) + 2, n + u // 2
 
 
-def printInorder( root):
-    if root:
-        # First recur on left child
-        printInorder(root.left)
+from copy import copy
 
-        # then print the data of node
-        print(root.val),
-
-        # now recur on right child
-        printInorder(root.right)
-
-
-class Solution:
-    ans = []
-    def __init__(self):
-        pass
-
-    def generateTrees(self, n: int):
-
-        def helper(node, input, root):
-
-            if len(input) == 0:
-                print("input", input)
-                print("Final Final Final")
-                root.display()
-                self.ans.append(root)
+def generateTree(n):
+    ans=[]
+    n=list(range(1,n+1))
+    cache = {}
+    node = TreeNode()
+    def helper(output,n,treelist):
+        nonlocal ans
+        nonlocal cache
+        if len(n)==0:
+            if str(treelist) in cache:
                 return
-            else:
-                for index, i in enumerate(input):
+            cache[str(treelist)]=True
+            ans.append(output)
+            return
+        for i in range(0,len(n)):
+            remaning = n[:i]+n[i+1:]
 
-                    if root is None:
-                        print("input", input)
-                        print("root")
-                        print(i)
-                        newnode = TreeNode(i)
-                        helper(newnode, input[:index] + input[index + 1:], newnode)
-
-                    else:
-                        print("input", input)
-                        if i > node.key:
-                            print('in right')
-
-                            newnode = TreeNode(i)
-                            node.right = newnode
-                        else:
-                            newnode = TreeNode(i)
-                            node.left = newnode
-                            print('in left')
-
-                        print(i)
-                        print("Inter INter iNter")
-                        root.display()
-                        helper(newnode, input[:index] + input[index + 1:], root)
-                return
-
-        helper(None, list(range(1, n + 1)), None)
+    helper(node,n,[])
 
 
 
 
-
-a = Solution()
-a.generateTrees(3)
