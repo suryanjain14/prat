@@ -1,0 +1,2 @@
+def vmware(array ,sum):
+    

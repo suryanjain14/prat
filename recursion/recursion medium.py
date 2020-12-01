@@ -14,10 +14,10 @@ def subsets(string):
         helper(output + string[0], string[1:], ans)
 
     helper('', string, ans)
-    return ans
+    return sorted(ans)
 
 
-# print( subsets('abc'))
+print( subsets('abc'))
 #
 def permutations(nums):
     ans = []
@@ -35,7 +35,7 @@ def permutations(nums):
     return ans
 
 
-print(permutations([1,2,3,4]))
+# print(permutations([1, 2, 3, 4]))
 
 
 def permuteUnique(nums):
@@ -80,6 +80,48 @@ def balenceparenthesis(no):
     helper('', no, no, ans)
     return ans
 
+
 # print(balenceparenthesis(3))
 
 
+# Print all possible strings of length k that can be formed from a set of n characters
+# Examples:
+#
+# Input:
+# set[] = {'a', 'b'}, k = 3
+#
+# Output:
+# aaa
+# aab
+# aba
+# abb
+# baa
+# bab
+# bba
+# bbb
+#
+#
+# Input:
+# set[] = {'a', 'b', 'c', 'd'}, k = 1
+# Output:
+# a
+# b
+# c
+# d
+# For a given set of size n, there will be n^k possible strings of length k. The idea is to start from an empty output string (we call it prefix in following code). One by one add all characters to prefix. For every character added, print all possible strings with current prefix by recursively calling for k equals to k-1.
+# Below is the implementation of above idea :
+
+def allpossiblestring(set=[], k=0):
+    def helper(string, k):
+        nonlocal set
+        if k == 0:
+            print(string)
+        else:
+            for i in set:
+                helper(string + i, k - 1)
+        return
+
+    helper("", k)
+
+
+allpossiblestring(["a", "b","c"], k=2)
