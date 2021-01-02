@@ -21,3 +21,6 @@ def knapsackProblem(items, capacity):
     ans = helper(items, capacity, memo)
 
     return ans
+
+
+def knapsack(items, capacity)
