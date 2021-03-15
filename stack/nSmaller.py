@@ -39,7 +39,8 @@ def nSmallerLeft(array):
 
 
 array = [1, 2, 0, 0, 4, 3, 2]
-# ans= nSmallerRight(array)
-ans = nSmallerLeft(array)
+array2 = [1, 2, 3, 4, 5]
+ans = nSmallerRight(array2)
+# ans = nSmallerLeft(array)
 print(array)
 print(ans)

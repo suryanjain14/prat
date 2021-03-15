@@ -6,53 +6,52 @@
 
 
 def histogramArea(array: list):
-    right=nsr(array)
-    left=nsl(array)
-    ans=0
+    right = nsr(array)
+    left = nsl(array)
+    ans = 0
     for i in range(0, len(right)):
-        width=right[i] - left[i] - 1
-        ans=max(width*array[i],ans)
+        width = right[i] - left[i] - 1
+        ans = max(width * array[i], ans)
     return ans
 
 
-
 def nsl(array):
-    stack=[]
-    left=[]
-    for index in range(0,len(array)):
+    stack = []
+    left = []
+    for index in range(0, len(array)):
 
         if len(stack) == 0:
-            left.append(index-1)
-        elif array[stack[-1]] <= array[index]:
+            left.append(-1)
+        elif array[stack[-1]] < array[index]:
             left.append(stack[-1])
-        elif array[stack[-1]] > array[index]:
-            while len(stack) > 0 and array[stack[-1]] > array[index]:
+        elif array[stack[-1]] >= array[index]:
+            while len(stack) > 0 and array[stack[-1]] >= array[index]:
                 stack.pop()
             if len(stack) == 0:
-                left.append(index-1)
+                left.append(-1)
             else:
                 left.append(stack[-1])
         stack.append(index)
     return left
 
+
 def nsr(array):
-    stack=[]
-    right=[]
-    for index in range(len(array)-1,-1,-1):
-        if len(stack)==0:
-            right.append(index+1)
-        elif array[stack[-1]]<=array[index]:
+    stack = []
+    right = []
+    for index in range(len(array) - 1, -1, -1):
+        if len(stack) == 0:
+            right.append(len(array))
+        elif array[stack[-1]] < array[index]:
             right.append(stack[-1])
-        elif array[stack[-1]]>array[index]:
-            while len(stack) > 0 and array[stack[-1]]>array[index]:
+        elif array[stack[-1]] >= array[index]:
+            while len(stack) > 0 and array[stack[-1]] >= array[index]:
                 stack.pop()
             if len(stack) == 0:
-                right.append(index+1)
+                right.append(len(array))
             else:
                 right.append(stack[-1])
         stack.append(index)
     return right[::-1]
-#
 
 
-print(histogramArea([6, 2, 5, 4, 5, 1, 6]))
+print(histogramArea([1, 1, 1, 1, 1, 1, 1, 0]))
