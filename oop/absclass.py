@@ -16,5 +16,5 @@ class sub(abs):
     def method(self):
         print('asd')
 
-
+obj = sub()
 ob2 = abs()
